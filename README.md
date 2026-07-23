@@ -159,7 +159,8 @@ The manuscript is written in Markdown and converted to LaTeX, then compiled to P
 
 ```bash
 cd paper
-pandoc manuscript.md -s -V papersize=letter -V geometry:margin=1in -V fontsize=11pt \n  -V colorlinks=true -o manuscript.tex
+pandoc manuscript.md -s -V papersize=letter -V geometry:margin=1in \
+       -V fontsize=11pt -V colorlinks=true -o manuscript.tex
 tectonic -X compile manuscript.tex
 ```
 
