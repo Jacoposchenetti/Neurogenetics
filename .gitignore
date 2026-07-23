@@ -1,0 +1,48 @@
+# --- Python ---
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# --- Data: raw external data is NOT redistributable (AHBA / ENIGMA-EEG / 1000G) ---
+data/raw/**
+data/reference/**
+!data/raw/.gitkeep
+!data/reference/.gitkeep
+!data/raw/README.md
+!data/reference/README.md
+
+# Derived data: keep small/text derivatives, ignore large binaries
+data/derived/**/*.nii
+data/derived/**/*.nii.gz
+data/derived/**/*.h5
+data/derived/**/*.npy
+# Large regenerable AHBA expression matrices (~100 MB); rebuild via scripts/03
+data/derived/ahba_expression_*.csv
+
+# MAGMA large regenerable intermediates (keep .genes.out.txt results + logs)
+results/tables/magma/*.snploc
+results/tables/magma/*.genes.annot
+results/tables/magma/*.genes.annot.txt
+results/tables/magma/*.genes.raw
+
+# --- Results: keep figures/tables/logs but ignore heavy intermediates ---
+results/**/*.npy
+results/**/*.npz
+results/**/*.pkl
+
+# --- Abagen / nilearn download caches ---
+nilearn_data/
+abagen-data/
+*.log
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# tooling config
+.claude/

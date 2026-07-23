@@ -1,0 +1,63 @@
+# Central config for the alpha-genetics imaging-transcriptomics pipeline.
+# Every script reads this so parameters live in ONE place and get logged.
+
+seed: 20260721                # global RNG seed for permutations / spin tests
+
+parcellation:
+  primary: glasser            # HCP-MMP1.0, 360 regions (matches Tabarelli 2022)
+  sensitivity: schaefer200    # Fase 5 robustness
+
+abagen:
+  # passed to abagen.get_expression_data — keep in sync with defaults you report
+  ibf_threshold: 0.5
+  probe_selection: diff_stability
+  lr_mirror: null
+  missing: interpolate
+  norm_matched: true
+  # AHBA donors to use. Full atlas has 6: 9861, 10021, 12876, 14380, 15496, 15697.
+  # Donor 15496 (H0351.1015) is EXCLUDED: its Allen normalized-microarray file
+  # (well_known_file 178238266) returns HTTP 404 at the source as of 2026-07-21
+  # (the DB record exists but the download route is broken on Allen's server).
+  # 15496 is a left-hemisphere-only donor. RESTORE all 6 once Allen fixes the file.
+  donors: ['9861', '10021', '12876', '14380', '15697']
+
+enrichment:
+  n_spins: 10000              # spin-test permutations (Fase 4)
+  spin_method: vazquez        # nearest-neighbour spin (Alexander-Bloch/Vazquez-Rodriguez);
+                              # 'vasa' (Hungarian bijection) too slow at 10k spins
+  score:
+    primary: continuous       # per-region Spearman(expression profile, gene-level Z)
+    sensitivity: top100       # z-scored composite of the top-N gene set
+  corr: spearman              # correlation for the continuous score
+  roi_sets: [full, hub]       # full = 41 Tabarelli ROIs; hub = prefrontal 8C/8Av/9a
+  alternative: greater        # H1: target ROIs have HIGHER alpha score than rest
+
+gwas:
+  # ENIGMA-EEG (Smit et al. 2018), 20181101 release, N6000_Hom100 select.
+  # Build VERIFIED GRCh37/hg19 (rs3094315 @ chr1:752566) -> no liftOver needed.
+  build: GRCh37
+  cols: {snp: RS, chr: CHR, bp: BP, pval: PVAL, n: N}
+  primary: alphaCz            # declared primary phenotype (H1)
+  controls: [thetaCz, betaCz, deltaCz]   # specificity controls (Fase 4/5)
+  # Which gene set feeds the enrichment. Only 1 gene survives Bonferroni/FDR
+  # (underpowered GWAS), so a threshold set is tiny. Options produced by
+  # 01_postprocess_magma.py: bonferroni | fdr05 | p001 | p01 | top100 | top200.
+  # PROVISIONAL default; a rank-based/continuous alternative is preferred (Fase 4).
+  gene_set: top100
+  files:
+    alphaCz:  data/raw/ENIGMA-EEG_20181101_alphaCz.txt/select_N6000_Hom100.alphaCz.txt
+    alphaOcc: data/raw/ENIGMA-EEG_20181101_alphaOcc.txt/select_N6000_Hom100.alphaOcc.txt
+    peakOcc:  data/raw/ENIGMA-EEG_20181101_peakOcc.txt/select_N6000_Hom100.peakOcc.txt
+    thetaCz:  data/raw/ENIGMA-EEG_20181101_thetaCz.txt/select_N6000_Hom100.thetaCz.txt
+    betaCz:   data/raw/ENIGMA-EEG_20181101_betaCz.txt/select_N6000_Hom100.betaCz.txt
+    deltaCz:  data/raw/ENIGMA-EEG_20181101_deltaCz.txt/select_N6000_Hom100.deltaCz.txt
+
+magma:
+  reference_build: GRCh37     # matches gwas.build -> use NCBI37 gene.loc + g1000_eur
+  window_kb: [35, 10]         # upstream, downstream SNP-to-gene window
+  gene_pval_correction: bonferroni
+
+roi:
+  # 41 alpha-source ROIs from Tabarelli et al. 2022, Table 1 (HCP-MMP labels).
+  # Bilateral by default. See scripts/02_roi_mapping.py for the authoritative list.
+  hub_subset: [8C, 8Av, 9a]  # prefrontal connectivity hubs (targeted H1 test)
