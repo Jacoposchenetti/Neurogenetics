@@ -1,0 +1,31 @@
+{
+  "phase": "01_postprocess_magma",
+  "timestamp_utc": "20260721T163648Z",
+  "params": {
+    "phenotype": "betaCz",
+    "n_genes": 18052,
+    "gene_set_sizes": {
+      "bonferroni": 0,
+      "fdr05": 0,
+      "p001": 14,
+      "p01": 220,
+      "top100": 100,
+      "top200": 200
+    },
+    "selected_set": "top100",
+    "magma_out": "results\\tables\\magma\\betaCz.genes.out.txt"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.14.1",
+    "statsmodels": "0.14.6",
+    "nibabel": "5.3.3",
+    "nilearn": "0.10.4",
+    "abagen": "0.0.3+321.g1f11d61",
+    "netneurotools": "0.3.0",
+    "brainsmash": "0.11.0"
+  }
+}

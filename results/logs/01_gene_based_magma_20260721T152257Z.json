@@ -1,0 +1,28 @@
+{
+  "phase": "01_gene_based_magma",
+  "timestamp_utc": "20260721T152257Z",
+  "params": {
+    "phenotype": "thetaCz",
+    "sumstats": "data/raw/ENIGMA-EEG_20181101_thetaCz.txt/select_N6000_Hom100.thetaCz.txt",
+    "n_snps": 4959084,
+    "window_kb": [
+      35,
+      10
+    ],
+    "build": "GRCh37",
+    "magma": "C:\\Users\\jsche\\Desktop\\Genetics for alpha rythm generators\\data\\reference\\magma.exe"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.14.1",
+    "statsmodels": "0.14.6",
+    "nibabel": "5.3.3",
+    "nilearn": "0.10.4",
+    "abagen": "0.0.3+321.g1f11d61",
+    "netneurotools": "0.3.0",
+    "brainsmash": "0.11.0"
+  }
+}
