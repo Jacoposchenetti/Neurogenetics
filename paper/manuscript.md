@@ -2,11 +2,11 @@
 
 **Jacopo Schenetti**
 
-Independent Researcher, Rome, Italy
+Center for Mind/Brain Sciences (CIMeC), University of Trento, Rovereto, Italy
 
 ORCID: [0009-0000-9108-3806](https://orcid.org/0009-0000-9108-3806)
 
-Correspondence: jschenetti@gmail.com
+Correspondence: jacopo.schenetti@unitn.it
 
 **Running title:** Null-model choice in transcriptomic enrichment of EEG genetics
 

@@ -58,7 +58,7 @@ documented. Every figure and number in the manuscript can be regenerated from th
 repository.
 
 The manuscript is original, is not under consideration elsewhere, and has not been
-published previously. I am an independent researcher; this work received no external
+published previously. This work received no external, project or institutional
 funding, and I declare no competing interests. [If applicable: A preprint is
 available at bioRxiv doi:XXXXX.]
 
@@ -70,8 +70,8 @@ Thank you for your consideration.
 Yours sincerely,
 
 Jacopo Schenetti
-Independent Researcher, Rome, Italy
-jschenetti@gmail.com · ORCID 0009-0000-9108-3806
+Center for Mind/Brain Sciences (CIMeC), University of Trento, Rovereto, Italy
+jacopo.schenetti@unitn.it · ORCID 0009-0000-9108-3806
 
 ---
 
@@ -85,7 +85,7 @@ reproducibility. Mention that the full analysis is openly reproducible.
 than novelty of outcome: state plainly that the primary hypothesis was not supported,
 that the design included the falsifying tests from the outset, and that sensitivity
 was established by positive control. Add a sentence noting the request for
-publication-fee assistance (submitted separately).
+institutional open-access coverage / fee assistance (handled separately).
 
 **Peer Community In / Peer Community Journal.** Reframe as a request for
 recommendation of the preprint rather than a journal submission; the emphasis on open
