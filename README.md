@@ -201,9 +201,9 @@ Further rationale is in [`docs/methods_notes.md`](docs/methods_notes.md).
 
 If you use this code, please cite the archived release:
 
-> Schenetti, J. (2026). *Neurogenetics: imaging transcriptomics of EEG alpha-power
-> genetics in the cortical alpha generators* (v1.0.0) [Software]. Zenodo.
-> https://doi.org/10.5281/zenodo.21514561
+> Schenetti, J. (2026). *Neurogenetics: analysis code and derived results for an
+> imaging-transcriptomics test of EEG alpha-power genetics* (v1.0.0) [Software].
+> Zenodo. https://doi.org/10.5281/zenodo.21514561
 
 together with the manuscript and the underlying resources:
 ENIGMA-EEG (Smit et al., 2018), the Allen Human Brain Atlas (Hawrylycz et al., 2012),

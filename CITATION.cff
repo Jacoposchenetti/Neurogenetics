@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
-title: "Neurogenetics: imaging transcriptomics of EEG alpha-power genetics in the cortical alpha generators"
+title: "Neurogenetics: analysis code and derived results for an imaging-transcriptomics test of EEG alpha-power genetics"
 abstract: >-
   Analysis pipeline and derived results testing whether genes associated with EEG
   alpha power are transcriptomically concentrated in the cortical generators of the
