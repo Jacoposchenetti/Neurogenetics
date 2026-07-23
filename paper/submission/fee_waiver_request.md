@@ -13,7 +13,7 @@ Dear Editors / Publications Office,
 
 I am requesting a full waiver of the article processing charge for my submission,
 **"A significant enrichment that is not: spatial nulls, co-expression, and the
-imaging transcriptomics of EEG oscillatory-power genetics."**
+imaging transcriptomics of EEG alpha-power genetics."**
 
 I am an **independent researcher with no institutional affiliation and no research
 funding**. This study received no external, institutional or departmental support of

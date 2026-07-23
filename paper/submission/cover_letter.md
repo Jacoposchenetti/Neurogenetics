@@ -14,7 +14,7 @@ Dear Editors,
 
 I am submitting for your consideration the manuscript **"A significant enrichment
 that is not: spatial nulls, co-expression, and the imaging transcriptomics of EEG
-oscillatory-power genetics."**
+alpha-power genetics."**
 
 The paper reports a null result and a methodological demonstration that I believe are
 of direct interest to your readership.

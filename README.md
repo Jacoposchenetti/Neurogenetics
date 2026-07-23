@@ -1,9 +1,9 @@
-# Neurogenetics: imaging transcriptomics of the cortical alpha-rhythm sources targeted by closed-loop EEG–TMS
+# Neurogenetics: imaging transcriptomics of EEG alpha-power genetics in the cortical alpha generators
 
 Code and derived results for the study:
 
 > **A significant enrichment that is not: spatial nulls, co-expression, and the
-> imaging transcriptomics of EEG oscillatory-power genetics**
+> imaging transcriptomics of EEG alpha-power genetics**
 
 The manuscript is in [`paper/manuscript.pdf`](paper/manuscript.pdf) (source:
 `paper/manuscript.md`, `paper/manuscript.tex`).

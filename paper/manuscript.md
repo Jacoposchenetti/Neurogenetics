@@ -1,4 +1,4 @@
-# A significant enrichment that is not: spatial nulls, co-expression, and the imaging transcriptomics of EEG oscillatory-power genetics
+# A significant enrichment that is not: spatial nulls, co-expression, and the imaging transcriptomics of EEG alpha-power genetics
 
 **Jacopo Schenetti**
 
