@@ -196,7 +196,7 @@ The methodological conclusion is the one that generalises. A spin-significant, s
 
 ## Data and code availability
 
-Analysis code and derived results (gene-based statistics, region × gene expression summaries, enrichment tables, run logs) are available in the project repository. Raw data are not redistributed and must be obtained from their sources under the applicable terms: ENIGMA-EEG summary statistics (ENIGMA-EEG working group), the Allen Human Brain Atlas (via *abagen*), and the 1000 Genomes / MAGMA reference files (CTG lab). All parameters, random seeds and software versions are recorded in the repository run logs.
+Analysis code and derived results (gene-based statistics, region × gene expression summaries, enrichment tables, run logs) are openly available at https://github.com/Jacoposchenetti/Neurogenetics under an MIT licence, and archived at Zenodo: https://doi.org/10.5281/zenodo.21514561. Raw data are not redistributed and must be obtained from their sources under the applicable terms: ENIGMA-EEG summary statistics (ENIGMA-EEG working group), the Allen Human Brain Atlas (via *abagen*), and the 1000 Genomes / MAGMA reference files (CTG lab). All parameters, random seeds and software versions are recorded in the repository run logs, and every figure and reported value can be regenerated from the archived code.
 
 ## Author contributions
 

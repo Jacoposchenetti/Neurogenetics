@@ -53,7 +53,7 @@ cheap to adopt: report a gene-set null alongside the spatial null.
 
 All analysis code, derived statistics, per-run logs and the manuscript source are
 openly available at https://github.com/Jacoposchenetti/Neurogenetics under an MIT
-licence. Raw GWAS and atlas data are not redistributed, but access instructions are
+licence and archived at Zenodo (https://doi.org/10.5281/zenodo.21514561). Raw GWAS and atlas data are not redistributed, but access instructions are
 documented. Every figure and number in the manuscript can be regenerated from the
 repository.
 
