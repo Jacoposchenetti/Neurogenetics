@@ -41,8 +41,8 @@ information you require.
 Yours sincerely,
 
 Jacopo Schenetti
-Independent Researcher
-[email] · [ORCID]
+Independent Researcher, Rome, Italy
+jschenetti@gmail.com · ORCID 0009-0000-9108-3806
 
 ---
 
