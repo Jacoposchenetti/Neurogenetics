@@ -2,29 +2,36 @@
 
 Code and derived results for the study:
 
-> **No alpha-specific transcriptomic signature of the cortical alpha-rhythm sources
-> targeted by closed-loop EEG–TMS: an imaging-transcriptomics test of the ENIGMA-EEG
-> oscillatory-power GWAS**
+> **A significant enrichment that is not: spatial nulls, co-expression, and the
+> imaging transcriptomics of EEG oscillatory-power genetics**
 
 The manuscript is in [`paper/manuscript.pdf`](paper/manuscript.pdf) (source:
 `paper/manuscript.md`, `paper/manuscript.tex`).
 
 ## What this study does
 
-It tests whether genes associated with EEG alpha power are expressed more highly in
-the 41 cortical alpha-source regions relevant for brain-state-dependent EEG–TMS
-(Tabarelli et al., 2022) than in the rest of cortex, and whether any such enrichment
-is *specific* to the alpha band.
+It asks two questions at once.
+
+**Substantive:** are genes associated with EEG alpha power expressed more highly in
+the 41 cortical generators of the alpha rhythm (Tabarelli et al., 2022) than in the
+rest of cortex, and is any such enrichment *specific* to the alpha band?
+
+**Methodological:** does the answer survive complementary null models — or only the
+spin test that is the field standard?
 
 Pipeline: ENIGMA-EEG GWAS summary statistics → MAGMA gene-based analysis → Allen
-Human Brain Atlas regional expression (`abagen`) → spatial enrichment against a
-spin-test null, with specificity (6 phenotypes), parcellation (3 atlases) and
-methodological (positive control, gene-set null, surrogate cross-check) controls.
+Human Brain Atlas regional expression (`abagen`) → enrichment tested against a
+spatial (spin) null, a co-expression-aware gene-set null, and a positive control,
+across 6 phenotypes and 3 parcellations.
 
-**Result: the hypothesis is not supported.** Any enrichment is weak, shared with
-non-alpha control bands, fragile to parcellation, and does not survive FDR
-correction — while a positive control confirms the test can detect a true spatial
-effect.
+**Result.** Judged by the spin test alone the hypothesis appears supported
+(*p*_spin = 0.022), and the result is corroborated by an independent surrogate model
+while the pipeline passes a positive control. It then dissolves: the enrichment is
+not band-specific, does not replicate across alpha phenotypes, does not survive a
+change of parcellation or FDR correction, and — decisively — is indistinguishable
+from random gene sets of matched size (*p*_geneset = 0.33). Correcting for spatial
+autocorrelation is necessary but not sufficient; enrichment claims should report a
+gene-set null alongside the spatial null.
 
 ---
 

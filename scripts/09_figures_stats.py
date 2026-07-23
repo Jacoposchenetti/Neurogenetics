@@ -42,8 +42,8 @@ def fig1_pipeline():
         ("ENIGMA-EEG\nGWAS\n(6 phenotypes)", S.OKABE["blue"]),
         ("MAGMA\ngene-based\n(gene-level Z)", S.OKABE["skyblue"]),
         ("AHBA / abagen\nregional expression\n(Glasser 360)", S.OKABE["green"]),
-        ("Alpha-source ROIs\nTabarelli 2022\n(41 ROIs)", S.OKABE["orange"]),
-        ("Spin-test\nenrichment\n+ controls", S.OKABE["vermillion"]),
+        ("Alpha generators\nTabarelli 2022\n(41 ROIs)", S.OKABE["orange"]),
+        ("Enrichment vs\nspatial + gene-set\n+ control nulls", S.OKABE["vermillion"]),
     ]
     w, h, y = 2.0, 1.4, 1.4
     xs = np.linspace(0.4, 9.6, len(steps))
@@ -56,7 +56,7 @@ def fig1_pipeline():
         if i < len(steps) - 1:
             ax.add_patch(FancyArrowPatch((x + w, y), (xs[i + 1], y), arrowstyle="-|>",
                                          mutation_scale=16, color=S.INK, lw=1.6))
-    ax.text(6, 2.8, "Do EEG alpha-power genes concentrate in the cortical alpha sources targeted by closed-loop TMS-EEG?",
+    ax.text(6, 2.8, "Do EEG alpha-power genes concentrate in the cortical generators of the alpha rhythm?",
             ha="center", va="center", fontsize=11, style="italic", color=S.INK)
     fig.tight_layout(); out = FIGDIR / "fig1_pipeline.png"; fig.savefig(out); plt.close(fig)
     print(f"[write] {out}")
