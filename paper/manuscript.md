@@ -1,5 +1,13 @@
 # A significant enrichment that is not: spatial nulls, co-expression, and the imaging transcriptomics of EEG oscillatory-power genetics
 
+**Jacopo Schenetti**
+
+Independent Researcher, [City], Italy
+
+ORCID: [0000-0000-0000-0000]
+
+Correspondence: [email address]
+
 **Running title:** Null-model choice in transcriptomic enrichment of EEG genetics
 
 ---
@@ -192,11 +200,11 @@ Analysis code and derived results (gene-based statistics, region × gene express
 
 ## Author contributions
 
-Conceptualisation, analysis, and writing were performed by the author with computational assistance. (To be completed.)
+J.S. is the sole author and was responsible for conceptualisation, methodology, formal analysis, software, visualisation, and writing.
 
 ## Funding
 
-(To be completed.)
+This research received no external funding.
 
 ## Conflicts of interest
 
