@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 \documentclass[
   11pt,
 ]{article}
@@ -75,7 +76,11 @@
 \@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
 \makeatother
 \hypersetup{
-  hidelinks,
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
   pdfcreator={LaTeX via pandoc}}
 
 \author{}
@@ -91,7 +96,7 @@ genetics}\label{a-significant-enrichment-that-is-not-spatial-nulls-co-expression
 
 Independent Researcher, {[}City{]}, Italy
 
-ORCID: {[}0000-0000-0000-0000{]}
+ORCID: \href{https://orcid.org/0009-0000-9108-3806}{0009-0000-9108-3806}
 
 Correspondence: {[}email address{]}
 
