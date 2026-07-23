@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Neurogenetics: imaging transcriptomics of EEG alpha-power genetics in the cortical alpha generators"
+abstract: >-
+  Analysis pipeline and derived results testing whether genes associated with EEG
+  alpha power are transcriptomically concentrated in the cortical generators of the
+  alpha rhythm, and evaluating that inference against complementary null models
+  (spatial spin test, co-expression-aware gene-set null, positive control). Covers
+  MAGMA gene-based association from ENIGMA-EEG summary statistics, Allen Human Brain
+  Atlas regional expression via abagen, and spatial enrichment testing across six
+  EEG phenotypes and three cortical parcellations.
+version: 1.0.0
+date-released: "2026-07-23"
+license: MIT
+repository-code: "https://github.com/Jacoposchenetti/Neurogenetics"
+doi: 10.5281/zenodo.21514561
+authors:
+  - family-names: Schenetti
+    given-names: Jacopo
+    orcid: "https://orcid.org/0009-0000-9108-3806"
+    affiliation: "Center for Mind/Brain Sciences (CIMeC), University of Trento, Rovereto, Italy"
+keywords:
+  - imaging transcriptomics
+  - spatial null models
+  - gene-set enrichment
+  - EEG
+  - alpha rhythm
+  - GWAS
+  - MAGMA
+  - Allen Human Brain Atlas
