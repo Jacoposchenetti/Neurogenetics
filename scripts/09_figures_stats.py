@@ -21,17 +21,28 @@ import enrichment_lib as EL
 sys.path.insert(0, str(ROOT / "paper" / "figures"))
 import _style as S
 
-REFERENCE = ROOT / "data" / "reference"
 DERIVED = ROOT / "data" / "derived"
 TABLES = ROOT / "results" / "tables"
 FIGDIR = ROOT / "paper" / "figures"
-MAGMA = TABLES / "magma"
 
 
-def entrez_symbol():
-    gl = pd.read_csv(REFERENCE / "NCBI37.3.gene.loc", sep=r"\s+", header=None,
-                     names=["entrez", "chr", "start", "stop", "strand", "symbol"], dtype=str)
-    return dict(zip(gl["entrez"], gl["symbol"]))
+def gene_table(pheno: str = "alphaCz") -> pd.DataFrame:
+    """Gene-level results with symbols, from the versioned ranked table.
+
+    Uses results/tables/<pheno>_genes_ranked.csv, which 01_postprocess_magma.py
+    already wrote with the Entrez->symbol mapping resolved (columns GENE, CHR,
+    START, symbol, ZSTAT, P, ...). Reading it here keeps the figures runnable
+    from the committed derived results alone: neither the MAGMA .genes.out nor
+    data/reference/NCBI37.3.gene.loc (part of the non-redistributed reference
+    panel) is needed to rebuild Fig 3.
+    """
+    ranked = TABLES / f"{pheno}_genes_ranked.csv"
+    if not ranked.exists():
+        raise SystemExit(
+            f"missing {ranked.relative_to(ROOT)} — run "
+            f"`python scripts/01_postprocess_magma.py --pheno {pheno}` first."
+        )
+    return pd.read_csv(ranked)
 
 
 # --------------------------------- Fig 1 pipeline ---------------------------------
@@ -65,9 +76,7 @@ def fig1_pipeline():
 # --------------------------------- Fig 3 genetics ---------------------------------
 def fig3_genetics():
     S.apply_rc()
-    e2s = entrez_symbol()
-    df = pd.read_csv(MAGMA / "alphaCz.genes.out.txt", sep=r"\s+")
-    df["symbol"] = df["GENE"].astype(str).map(e2s).fillna(df["GENE"].astype(str))
+    df = gene_table("alphaCz")
     df["logp"] = -np.log10(df["P"])
     # cumulative genomic position
     df = df[df["CHR"].apply(lambda x: str(x).isdigit())].copy()

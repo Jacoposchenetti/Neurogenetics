@@ -22,5 +22,33 @@ Source URLs (MAGMA v1.10, SURFdrive shares; append `/download`):
 - Gene loc Build 37: https://vu.data.surfsara.nl/index.php/s/Pj2orwuF2JYyKxq
 - European reference: https://vu.data.surfsara.nl/index.php/s/VZNByNwpD8qqINe
 
-Run Fase 1 with: `python scripts/01_gene_based_magma.py --pheno alphaCz`.
+Run Phase 1 with: `python scripts/01_gene_based_magma.py --pheno alphaCz`.
 Exact versions/params are logged to `results/logs/` on each run.
+
+Note: only `scripts/01_*` need this folder. The rest of the pipeline (expression,
+enrichment, figures) runs from the committed derived results.
+
+## Yan-600 homotopic parcellation (Phase 6)
+
+Public download, git-ignored.
+
+Needed only by `scripts/06_parcellation_sensitivity.py --parc yan600`
+(`schaefer100` is fetched automatically by `netneurotools`; no action required).
+
+Source: Yan et al. 2023 homotopic parcellation in the CBIG repository, the
+fsaverage5 / Kong2022-17-networks variant. **The scripts expect different
+filenames than the source**, so rename on download:
+
+| Download from CBIG | Save as |
+|---|---|
+| `lh.600Parcels_Kong2022_17Networks.annot` | `data/reference/yan600_lh.annot` |
+| `rh.600Parcels_Kong2022_17Networks.annot` | `data/reference/yan600_rh.annot` |
+
+```bash
+CBIG=https://raw.githubusercontent.com/ThomasYeoLab/CBIG/master/stable_projects/brain_parcellation/Yan2023_homotopic/parcellations/FreeSurfer/fsaverage5/label/kong17
+curl -L $CBIG/lh.600Parcels_Kong2022_17Networks.annot -o data/reference/yan600_lh.annot
+curl -L $CBIG/rh.600Parcels_Kong2022_17Networks.annot -o data/reference/yan600_rh.annot
+```
+
+Sanity check: each file is an fsaverage5 annot with 10,242 vertices and 300
+parcels per hemisphere (600 total).

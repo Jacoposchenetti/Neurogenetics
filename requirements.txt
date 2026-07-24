@@ -17,7 +17,10 @@ nilearn>=0.10.4,<0.11
 abagen @ git+https://github.com/netneurolab/abagen.git   # AHBA expression (Fase 3)
 
 # --- spatial-null / spin-test methods (Fase 4) ---
-netneurotools>=0.2.3         # spin tests, parcellation utilities
+# netneurotools: used for dataset fetchers (mmpall, HCP standards, Schaefer) only —
+# the spin generator was dropped upstream, so it lives in scripts/enrichment_lib.py.
+# Upper bound guards the fetcher API; verified working on 0.2.3-0.3.0.
+netneurotools>=0.2.3,<0.4    # dataset fetchers, parcellation utilities
 brainsmash>=0.11.0           # spatial-autocorrelation-preserving surrogates
 
 # --- gene-set / enrichment annotation (Fase 1 cross-check, Fase 6 output) ---

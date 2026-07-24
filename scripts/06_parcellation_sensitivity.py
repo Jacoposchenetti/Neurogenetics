@@ -36,12 +36,32 @@ RESULTS = ROOT / "results"
 OVERLAP_THR = 0.5
 
 
+YAN600_SRC = (
+    "https://raw.githubusercontent.com/ThomasYeoLab/CBIG/master/stable_projects/"
+    "brain_parcellation/Yan2023_homotopic/parcellations/FreeSurfer/fsaverage5/label/kong17"
+)
+
+
 def annot_paths(parc: str) -> tuple[str, str]:
     if parc == "schaefer100":
         s = fetch_schaefer2018(version="fsaverage5")["100Parcels7Networks"]
         return str(s[0]), str(s[1])
     if parc == "yan600":
-        return (str(REFERENCE / "yan600_lh.annot"), str(REFERENCE / "yan600_rh.annot"))
+        lh = REFERENCE / "yan600_lh.annot"
+        rh = REFERENCE / "yan600_rh.annot"
+        missing = [p.name for p in (lh, rh) if not p.exists()]
+        if missing:
+            raise SystemExit(
+                f"Yan-600 parcellation not found in data/reference/ (missing: {', '.join(missing)}).\n"
+                "It is not redistributed here. Download the two fsaverage5 annot files from CBIG\n"
+                "and rename them (the target names differ from the source names):\n"
+                f"  curl -L {YAN600_SRC}/lh.600Parcels_Kong2022_17Networks.annot \\\n"
+                "       -o data/reference/yan600_lh.annot\n"
+                f"  curl -L {YAN600_SRC}/rh.600Parcels_Kong2022_17Networks.annot \\\n"
+                "       -o data/reference/yan600_rh.annot\n"
+                "See data/reference/README.md for details."
+            )
+        return str(lh), str(rh)
     raise SystemExit(f"unknown parcellation: {parc}")
 
 

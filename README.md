@@ -64,9 +64,11 @@ docs/methods_notes.md    methodological decisions and rationale
 - ~10 GB free disk (Allen Human Brain Atlas cache ~6.4 GB, 1000G reference panel ~3.6 GB).
 
 ```bash
-python3.12 -m venv venv
-# Windows:  venv\Scripts\activate
-# Linux/macOS:  source venv/bin/activate
+# Linux/macOS:
+python3.12 -m venv venv && source venv/bin/activate
+# Windows (the py launcher; `python3.12` is not a valid command there):
+py -3.12 -m venv venv && venv\Scripts\activate
+
 pip install -r requirements.txt
 ```
 
@@ -90,7 +92,7 @@ exact instructions.
 | MAGMA v1.10 binary + NCBI37.3 gene locations + 1000G EUR panel | CTG lab (`cncr.nl/research/magma/`) | public download | `data/reference/` |
 | Allen Human Brain Atlas microarray | Allen Institute | downloaded automatically by `abagen` on first run (~6.4 GB, cached) | (cache) |
 | Glasser HCP-MMP1.0, Schaefer-100 | fetched automatically by `netneurotools` | public | (cache) |
-| Yan-600 homotopic parcellation | CBIG repository (`ThomasYeoLab/CBIG`) | public download | `data/reference/` |
+| Yan-600 homotopic parcellation (`lh/rh.600Parcels_Kong2022_17Networks.annot`, fsaverage5 — **rename to `yan600_{lh,rh}.annot`**) | CBIG repository (`ThomasYeoLab/CBIG`) | public download, [exact commands here](data/reference/README.md#yan-600-homotopic-parcellation-phase-6) | `data/reference/` |
 
 Expected filenames are documented in [`data/raw/README.md`](data/raw/README.md) and
 [`data/reference/README.md`](data/reference/README.md).
@@ -138,10 +140,18 @@ python scripts/06_parcellation_sensitivity.py --parc yan600      --pheno alphaCz
 # 7. Method-validation analyses (positive control, gene-set null, surrogate check)
 python scripts/07_method_validation.py
 
-# 8. Figures
-python scripts/08_figures_brain.py     # surface figures  (Fig 2, Fig 5)
-python scripts/09_figures_stats.py     # statistical figures (Fig 1, 3, 4, 6)
+# 8. Figures  (written into paper/figures/, overwriting the versioned PNGs)
+python scripts/08_figures_brain.py     # surface figures     (Fig 2, Fig 4)
+python scripts/09_figures_stats.py     # statistical figures (Fig 1, 3, 5, 6)
 ```
+
+**Starting from the committed results (no restricted data).** Only step 1
+(`scripts/01_*`) needs the ENIGMA-EEG statistics, the MAGMA binary and the 1000G
+panel. The gene-level statistics they produce are versioned here
+(`data/derived/*_geneZ.csv`, the gene sets, `results/tables/*_genes_ranked.csv`),
+so steps 2b–8 reproduce every number and figure in the manuscript from a plain
+clone — the only inputs still needed are the AHBA (auto-downloaded by `abagen`),
+Schaefer-100 (auto-fetched) and Yan-600 (one public download, see the table above).
 
 `scripts/enrichment_lib.py` holds the shared machinery (parcel centroids, spin
 generation, the two alpha scores, the spin p-value) used by steps 4–7; `scripts/utils.py`
@@ -150,9 +160,10 @@ handles config loading and run logging.
 ### Determinism
 
 A single seed (`config.yaml: seed`) governs every permutation. Spin permutations are
-cached to `results/derived/` and reused, so repeated runs give identical numbers.
-Re-running the pipeline from scratch reproduces every value in the manuscript
-tables and figures.
+generated on first use and cached to `results/derived/` (created automatically; the
+`.npy` caches are git-ignored, so a fresh clone regenerates them from the seed), then
+reused, so repeated runs give identical numbers. Re-running the pipeline from scratch
+reproduces every value in the manuscript tables and figures.
 
 ---
 

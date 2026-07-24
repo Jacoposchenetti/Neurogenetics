@@ -5,7 +5,10 @@ seed: 20260721                # global RNG seed for permutations / spin tests
 
 parcellation:
   primary: glasser            # HCP-MMP1.0, 360 regions (matches Tabarelli 2022)
-  sensitivity: schaefer200    # Fase 5 robustness
+  # Robustness parcellations (Phase 6). Selected per run via
+  # `06_parcellation_sensitivity.py --parc {schaefer100,yan600}`; listed here for
+  # the record only — the script takes the choice from the CLI, not from this key.
+  sensitivity: [schaefer100, yan600]
 
 abagen:
   # passed to abagen.get_expression_data — keep in sync with defaults you report
@@ -22,7 +25,7 @@ abagen:
   donors: ['9861', '10021', '12876', '14380', '15697']
 
 enrichment:
-  n_spins: 10000              # spin-test permutations (Fase 4)
+  n_spins: 10000              # spin-test permutations (Phase 4)
   spin_method: vazquez        # nearest-neighbour spin (Alexander-Bloch/Vazquez-Rodriguez);
                               # 'vasa' (Hungarian bijection) too slow at 10k spins
   score:
@@ -38,11 +41,11 @@ gwas:
   build: GRCh37
   cols: {snp: RS, chr: CHR, bp: BP, pval: PVAL, n: N}
   primary: alphaCz            # declared primary phenotype (H1)
-  controls: [thetaCz, betaCz, deltaCz]   # specificity controls (Fase 4/5)
+  controls: [thetaCz, betaCz, deltaCz]   # specificity controls (Phase 4/5)
   # Which gene set feeds the enrichment. Only 1 gene survives Bonferroni/FDR
   # (underpowered GWAS), so a threshold set is tiny. Options produced by
   # 01_postprocess_magma.py: bonferroni | fdr05 | p001 | p01 | top100 | top200.
-  # PROVISIONAL default; a rank-based/continuous alternative is preferred (Fase 4).
+  # PROVISIONAL default; a rank-based/continuous alternative is preferred (Phase 4).
   gene_set: top100
   files:
     alphaCz:  data/raw/ENIGMA-EEG_20181101_alphaCz.txt/select_N6000_Hom100.alphaCz.txt
