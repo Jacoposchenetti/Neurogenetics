@@ -1,0 +1,10 @@
+% Compile-time character map for the PDF build.
+% Latin Modern (the default font under XeTeX/tectonic) lacks a few Unicode
+% math/relational glyphs used in the text; map them to their LaTeX math
+% equivalents so the manuscript compiles with no missing characters.
+% Used via:  pandoc manuscript.md ... -H pdf-header.tex -o manuscript.tex
+\usepackage{newunicodechar}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{−}{\ensuremath{-}}

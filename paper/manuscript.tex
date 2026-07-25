@@ -69,6 +69,16 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Compile-time character map for the PDF build.
+% Latin Modern (the default font under XeTeX/tectonic) lacks a few Unicode
+% math/relational glyphs used in the text; map them to their LaTeX math
+% equivalents so the manuscript compiles with no missing characters.
+% Used via:  pandoc manuscript.md ... -H pdf-header.tex -o manuscript.tex
+\usepackage{newunicodechar}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{−}{\ensuremath{-}}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -78,10 +88,10 @@
 \makeatother
 \hypersetup{
   colorlinks=true,
-  linkcolor={blue},
+  linkcolor={Maroon},
   filecolor={Maroon},
   citecolor={Blue},
-  urlcolor={blue},
+  urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
 \author{}
@@ -143,19 +153,19 @@ alpha-power genes are enriched in the cortical alpha generators
 (continuous \emph{p}\_spin = 0.022; top-100 \emph{p}\_spin = 0.030),
 with the spin result corroborated by an independent surrogate model
 (\emph{p} = 0.018) and the pipeline validated by a positive control
-(\emph{p}\_spin = 2 × 10⁻⁴). Three further tests dissolve that
-conclusion. First, it is not band-specific: theta, beta and delta enrich
-comparably or more strongly (top-100 beta \emph{p}\_spin = 0.011; delta
-0.042; continuous theta 0.042). Second, it does not replicate across
-alpha phenotypes (occipital alpha continuous \emph{p}\_spin = 0.20;
-alpha peak frequency non-significant, \emph{p}\_spin ≥ 0.066). Third,
-against random gene sets of matched size the alpha set is unremarkable
-(\emph{p}\_geneset = 0.33) --- the apparent enrichment is a generic
-property of arbitrary gene sets in this cortical territory, and is
-invisible to a spatial-only null. No test survived false-discovery-rate
-correction across the 24-cell phenotype × score × region-set grid
-(minimum \emph{q} = 0.127), and nominal significance did not survive a
-change of parcellation.
+(\emph{p}\_spin = 2 × 10\textsuperscript{-4}). Three further tests
+dissolve that conclusion. First, it is not band-specific: theta, beta
+and delta enrich comparably or more strongly (top-100 beta
+\emph{p}\_spin = 0.011; delta 0.042; continuous theta 0.042). Second, it
+does not replicate across alpha phenotypes (occipital alpha continuous
+\emph{p}\_spin = 0.20; alpha peak frequency non-significant,
+\emph{p}\_spin ≥ 0.066). Third, against random gene sets of matched size
+the alpha set is unremarkable (\emph{p}\_geneset = 0.33) --- the
+apparent enrichment is a generic property of arbitrary gene sets in this
+cortical territory, and is invisible to a spatial-only null. No test
+survived false-discovery-rate correction across the 24-cell phenotype ×
+score × region-set grid (minimum \emph{q} = 0.127), and nominal
+significance did not survive a change of parcellation.
 
 \textbf{Conclusion.} EEG alpha-power genetics shows no regionally
 specific transcriptomic signature in the cortical generators of the
@@ -179,11 +189,12 @@ MAGMA; null result.
 The occipito-parietal alpha rhythm (\textasciitilde8--13 Hz) is the
 dominant oscillation of the awake human EEG at rest. Twin studies place
 the heritability of alpha power and peak frequency among the highest of
-any neurophysiological trait (h² ≈ 0.7--0.8; Smit et al., 2005), and a
-meta-analytic GWAS of EEG oscillatory power by the ENIGMA-EEG working
-group (Smit et al., 2018) identified common variants associated with
-band-limited power across delta, theta, alpha and beta, linking several
-psychiatric-liability genes to oscillatory brain activity.
+any neurophysiological trait (h\textsuperscript{2} ≈ 0.7--0.8; Smit et
+al., 2005), and a meta-analytic GWAS of EEG oscillatory power by the
+ENIGMA-EEG working group (Smit et al., 2018) identified common variants
+associated with band-limited power across delta, theta, alpha and beta,
+linking several psychiatric-liability genes to oscillatory brain
+activity.
 
 Where in the cortex that heritable variance acts is a separate question.
 The alpha rhythm is not generated uniformly: Tabarelli et al.~(2022)
@@ -286,11 +297,12 @@ The SNP-wise mean model used the 1000 Genomes European reference panel
 (1000 Genomes Project Consortium, 2015; 503 individuals) to model
 linkage disequilibrium. Entrez gene identifiers were mapped to HGNC
 symbols using the gene-location file. Gene \emph{p}-values were
-corrected by Bonferroni and Benjamini--Hochberg FDR. For the enrichment
-analysis we retained (i) the full genome-wide vector of gene-level
-\emph{z}-statistics and (ii) a top-100 gene set ranked by gene
-\emph{p}-value; threshold-based sets (Bonferroni, FDR,
-\emph{p}\textless10⁻³, \emph{p}\textless10⁻²) were also generated for
+corrected by Bonferroni and Benjamini--Hochberg FDR (Benjamini \&
+Hochberg, 1995). For the enrichment analysis we retained (i) the full
+genome-wide vector of gene-level \emph{z}-statistics and (ii) a top-100
+gene set ranked by gene \emph{p}-value; threshold-based sets
+(Bonferroni, FDR, \emph{p}\textless10\textsuperscript{-3},
+\emph{p}\textless10\textsuperscript{-2}) were also generated for
 reference.
 
 \subsubsection{2.3 Regional gene expression (AHBA /
@@ -301,23 +313,23 @@ build post-0.1.3, GitHub \texttt{netneurolab/abagen}, required for
 pandas ≥2 compatibility; Markello et al., 2021) from AHBA microarray
 data (Hawrylycz et al., 2012). Default processing was used
 (intensity-based filtering threshold 0.5; probe selection by
-differential stability; within-donor scaled robust sigmoid
-normalisation; \texttt{missing="interpolate"}; matched-sample
-normalisation). Of the six AHBA donors, five were used; donor 15496
-(H0351.1015, a left-hemisphere-only donor) was excluded because its
-normalized-microarray archive was unavailable at source at the time of
-analysis (persistent HTTP 404). The primary parcellation was Glasser
-HCP-MMP1.0 (Glasser et al., 2016; 360 regions), matching the space in
-which the alpha sources are defined. Because AHBA samples are mapped by
-\emph{abagen} to fsaverage5, the Glasser atlas was resampled from
-fsLR32k to fsaverage5 using the Human Connectome Project
-\texttt{resample\_fsaverage} registration spheres (nearest-neighbour in
-the common fsaverage frame); resampling preserved all 180 parcels per
-hemisphere. The resulting expression matrix contained 360 regions ×
-15,563 genes, with complete coverage of all 82 target parcels. For
-robustness, expression was also computed in the Schaefer-100 (Schaefer
-et al., 2018) and Yan-600 homotopic (Yan et al., 2023) parcellations,
-both in fsaverage5.
+differential stability (Hawrylycz et al., 2015); within-donor scaled
+robust sigmoid normalisation; \texttt{missing="interpolate"};
+matched-sample normalisation). Of the six AHBA donors, five were used;
+donor 15496 (H0351.1015, a left-hemisphere-only donor) was excluded
+because its normalized-microarray archive was unavailable at source at
+the time of analysis (persistent HTTP 404). The primary parcellation was
+Glasser HCP-MMP1.0 (Glasser et al., 2016; 360 regions), matching the
+space in which the alpha sources are defined. Because AHBA samples are
+mapped by \emph{abagen} to fsaverage5, the Glasser atlas was resampled
+from fsLR32k to fsaverage5 using the Human Connectome Project
+\texttt{resample\_fsaverage} registration spheres (Van Essen et al.,
+2012; Glasser et al., 2013; nearest-neighbour in the common fsaverage
+frame); resampling preserved all 180 parcels per hemisphere. The
+resulting expression matrix contained 360 regions × 15,563 genes, with
+complete coverage of all 82 target parcels. For robustness, expression
+was also computed in the Schaefer-100 (Schaefer et al., 2018) and
+Yan-600 homotopic (Yan et al., 2023) parcellations, both in fsaverage5.
 
 \subsubsection{2.4 Alpha-source region
 set}\label{alpha-source-region-set}
@@ -368,12 +380,12 @@ rotations mirror-matched; seed fixed and logged), and computed a
 one-sided \emph{p}-value (H1: target \textgreater{} rest) as the
 fraction of rotated maps with a target-region mean at least as large as
 observed. This self-contained implementation was used because the spin
-generator had been removed from the version of \emph{netneurotools}
-available at analysis time. Specificity and replication were assessed by
-repeating the test for all six phenotypes and both scores, and
-correcting the resulting 24-cell grid by Benjamini--Hochberg FDR.
-Robustness was assessed by repeating the primary-phenotype test in the
-Schaefer-100 and Yan-600 parcellations. Because the analysis is
+generator had been removed from the version of \emph{netneurotools} (Liu
+et al., 2025) available at analysis time. Specificity and replication
+were assessed by repeating the test for all six phenotypes and both
+scores, and correcting the resulting 24-cell grid by Benjamini--Hochberg
+FDR. Robustness was assessed by repeating the primary-phenotype test in
+the Schaefer-100 and Yan-600 parcellations. Because the analysis is
 internally power-matched --- every phenotype shares the same GWAS
 design, the same expression matrix and the same null --- the
 \emph{relative} comparison between the alpha and control bands is
@@ -399,7 +411,7 @@ whose target-versus-rest difference met or exceeded the observed value.
 \textbf{(iii) Spin validation.} Because the spin generator was
 self-implemented, we benchmarked it against an independent
 spatial-autocorrelation-preserving surrogate model (brainsmash; Burt et
-al., 2020; Markello \& Misić, 2021), generating 1,000 surrogate maps of
+al., 2020; Markello \& Mišić, 2021), generating 1,000 surrogate maps of
 the primary alpha score over a Euclidean parcel-distance matrix and
 comparing the resulting \emph{p}-value with the spin \emph{p}-value.
 
@@ -417,29 +429,30 @@ signal}\label{gene-based-analysis-recovers-credible-signal}
 
 MAGMA gene-based analysis of central alpha power tested 18,053 genes. A
 single gene survived genome-wide Bonferroni and FDR correction ---
-\emph{PRKG2} (\emph{p} = 4.0 × 10⁻⁷, \emph{q} = 0.007) --- consistent
-with the modest sample size. The leading sub-threshold signal included
-the chr3p21 pleiotropic cluster (\emph{GNL3}, \emph{GLT8D1},
-\emph{NT5DC2}, \emph{PBRM1}; \emph{p} ≈ 4--5 × 10⁻⁵), one of the most
-robust loci in psychiatric genetics and consistent with the ENIGMA-EEG
-thesis that psychiatric-liability genes contribute to oscillatory brain
-activity (Smit et al., 2018). The presence of this expected locus
-provides a positive control that the gene-based pipeline behaves
-correctly. Because only one gene survived strict correction, we did not
-treat a threshold-based gene set as the primary readout; instead the
-continuous score (using the full gene-level signal) was pre-declared
-primary and the top-100 gene set served as a sensitivity analysis. (The
-analysis grid was fixed in advance but was not formally pre-registered.)
+\emph{PRKG2} (\emph{p} = 4.0 × 10\textsuperscript{-7}, \emph{q} = 0.007)
+--- consistent with the modest sample size. The leading sub-threshold
+signal included the chr3p21 pleiotropic cluster (\emph{GNL3},
+\emph{GLT8D1}, \emph{NT5DC2}, \emph{PBRM1}; \emph{p} ≈ 4--5 ×
+10\textsuperscript{-5}), one of the most robust loci in psychiatric
+genetics and consistent with the ENIGMA-EEG thesis that
+psychiatric-liability genes contribute to oscillatory brain activity
+(Smit et al., 2018). The presence of this expected locus provides a
+positive control that the gene-based pipeline behaves correctly. Because
+only one gene survived strict correction, we did not treat a
+threshold-based gene set as the primary readout; instead the continuous
+score (using the full gene-level signal) was pre-declared primary and
+the top-100 gene set served as a sensitivity analysis. (The analysis
+grid was fixed in advance but was not formally pre-registered.)
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={Gene-based genetics. (A) MAGMA gene-based association for central alpha power (alphaCz); PRKG2 passes Bonferroni and the chr3p21 pleiotropic cluster is the leading sub-threshold signal. (B) Top-10 genes. (C) −log₁₀ p of the top alphaCz genes across all six phenotypes --- the gene-level signal is largely specific to alphaCz.}]{figures/fig3_genetics.png}}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Gene-based genetics. (A) MAGMA gene-based association for central alpha power (alphaCz); PRKG2 passes Bonferroni and the chr3p21 pleiotropic cluster is the leading sub-threshold signal. (B) Top-10 genes. (C) −log10 p of the top alphaCz genes across all six phenotypes --- the gene-level signal is largely specific to alphaCz.}]{figures/fig3_genetics.png}}
 \caption{\textbf{Gene-based genetics.} (A) MAGMA gene-based association
 for central alpha power (alphaCz); \emph{PRKG2} passes Bonferroni and
 the chr3p21 pleiotropic cluster is the leading sub-threshold signal. (B)
-Top-10 genes. (C) −log₁₀ \emph{p} of the top alphaCz genes across all
-six phenotypes --- the gene-level signal is largely specific to
-alphaCz.}
+Top-10 genes. (C) −log\textsubscript{10} \emph{p} of the top alphaCz
+genes across all six phenotypes --- the gene-level signal is largely
+specific to alphaCz.}
 \end{figure}
 
 \subsubsection{3.2 The enrichment test is valid and the custom spin is
@@ -449,22 +462,23 @@ The positive control confirmed that the pipeline detects genuine spatial
 structure: with the PC1 expression-gradient loadings as the gene
 statistic and the top-tertile PC1 regions as the target, the spin test
 recovered a large, highly significant enrichment (target-versus-rest
-difference = 0.74; \emph{p}\_spin = 2 × 10⁻⁴). The subsequent alpha
-nulls are therefore not a floor effect of an insensitive method. The
-self-implemented spin was corroborated by an independent surrogate
-model: for the primary alpha map, the spin \emph{p}-value (0.022) and
-the brainsmash \emph{p}-value (0.018) were closely concordant.
+difference = 0.74; \emph{p}\_spin = 2 × 10\textsuperscript{-4}). The
+subsequent alpha nulls are therefore not a floor effect of an
+insensitive method. The self-implemented spin was corroborated by an
+independent surrogate model: for the primary alpha map, the spin
+\emph{p}-value (0.022) and the brainsmash \emph{p}-value (0.018) were
+closely concordant.
 
 \begin{figure}
 \centering
-\pandocbounded{\includegraphics[keepaspectratio,alt={Validation of the enrichment test. (A) Positive control: with the dominant expression gradient (PC1) as the gene statistic, the spin test recovers a large enrichment (p\_spin = 2 × 10⁻⁴). (B) Co-expression-aware gene-set null: the alpha top-100 target-versus-rest difference sits at the centre of 10,000 random gene sets (p\_geneset = 0.33). (C) The custom spin agrees with brainsmash surrogates.}]{figures/fig6_validation.png}}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Validation of the enrichment test. (A) Positive control: with the dominant expression gradient (PC1) as the gene statistic, the spin test recovers a large enrichment (p\_spin = 2 × 10-4). (B) Co-expression-aware gene-set null: the alpha top-100 target-versus-rest difference sits at the centre of 10,000 random gene sets (p\_geneset = 0.33). (C) The custom spin agrees with brainsmash surrogates.}]{figures/fig6_validation.png}}
 \caption{\textbf{Validation of the enrichment test.} (A) Positive
 control: with the dominant expression gradient (PC1) as the gene
 statistic, the spin test recovers a large enrichment (\emph{p}\_spin = 2
-× 10⁻⁴). (B) Co-expression-aware gene-set null: the alpha top-100
-target-versus-rest difference sits at the centre of 10,000 random gene
-sets (\emph{p}\_geneset = 0.33). (C) The custom spin agrees with
-brainsmash surrogates.}
+× 10\textsuperscript{-4}). (B) Co-expression-aware gene-set null: the
+alpha top-100 target-versus-rest difference sits at the centre of 10,000
+random gene sets (\emph{p}\_geneset = 0.33). (C) The custom spin agrees
+with brainsmash surrogates.}
 \end{figure}
 
 \subsubsection{3.3 By the spin test alone, alpha genes are enriched in
@@ -690,13 +704,13 @@ score deliberately used the \emph{entire} genome-wide gene-level signal
 rather than a sparse significant set, which is the analysis best suited
 to a low-powered GWAS; it too was non-specific. The positive control
 shows the enrichment machinery is not insensitive --- it recovered a
-genuine expression gradient at \emph{p}\_spin = 2 × 10⁻⁴ --- so the
-alpha null is not a floor effect of an underpowered \emph{test}, even if
-the underlying GWAS is underpowered. And the co-expression-aware
-gene-set null indicates that even the nominal alpha enrichment is a
-generic property of arbitrary gene sets in this territory
-(\emph{p}\_geneset = 0.33), not a weak-but-real alpha signal awaiting
-more power.
+genuine expression gradient at \emph{p}\_spin = 2 ×
+10\textsuperscript{-4} --- so the alpha null is not a floor effect of an
+underpowered \emph{test}, even if the underlying GWAS is underpowered.
+And the co-expression-aware gene-set null indicates that even the
+nominal alpha enrichment is a generic property of arbitrary gene sets in
+this territory (\emph{p}\_geneset = 0.33), not a weak-but-real alpha
+signal awaiting more power.
 
 Second, \textbf{the shared genetic architecture of neighbouring EEG
 bands}. Band-limited EEG powers are strongly genetically correlated
@@ -905,6 +919,11 @@ The author declares no competing interests.
   guide to linking brain-wide gene expression and neuroimaging data.
   \emph{NeuroImage}, 189, 353--367.
 \item
+  Benjamini, Y., \& Hochberg, Y. (1995). Controlling the false discovery
+  rate: A practical and powerful approach to multiple testing.
+  \emph{Journal of the Royal Statistical Society: Series B
+  (Methodological)}, 57(1), 289--300.
+\item
   Burt, J. B., Helmer, M., Shinn, M., Anticevic, A., \& Murray, J. D.
   (2020). Generative modeling of brain maps with spatial
   autocorrelation. \emph{NeuroImage}, 220, 117038.
@@ -933,6 +952,12 @@ The author declares no competing interests.
   excitation/inhibition balance from field potentials.
   \emph{NeuroImage}, 158, 70--78.
 \item
+  Glasser, M. F., Sotiropoulos, S. N., Wilson, J. A., Coalson, T. S.,
+  Fischl, B., Andersson, J. L., Xu, J., Jbabdi, S., Webster, M.,
+  Polimeni, J. R., Van Essen, D. C., \& Jenkinson, M. (2013). The
+  minimal preprocessing pipelines for the Human Connectome Project.
+  \emph{NeuroImage}, 80, 105--124.
+\item
   Glasser, M. F., Coalson, T. S., Robinson, E. C., Hacker, C. D.,
   Harwell, J., Yacoub, E., Ugurbil, K., Andersson, J., Beckmann, C. F.,
   Jenkinson, M., Smith, S. M., \& Van Essen, D. C. (2016). A multi-modal
@@ -943,6 +968,11 @@ The author declares no competing interests.
   al.~(2012). An anatomically comprehensive atlas of the adult human
   brain transcriptome. \emph{Nature}, 489(7416), 391--399.
 \item
+  Hawrylycz, M., Miller, J. A., Menon, V., Feng, D., Dolbeare, T.,
+  Guillozet-Bongaarts, A. L., et al.~(2015). Canonical genetic
+  signatures of the adult human brain. \emph{Nature Neuroscience},
+  18(12), 1832--1844.
+\item
   Hodgkinson, C. A., Enoch, M.-A., Srivastava, V., Cummins-Oman, J. S.,
   Ferrier, C., Iarikova, P., Sankararaman, S., Yamini, G., Yuan, Q.,
   Zhou, Z., Albaugh, B., White, K. V., Shen, P.-H., \& Goldman, D.
@@ -950,11 +980,17 @@ The author declares no competing interests.
   influence the human electroencephalogram. \emph{Proceedings of the
   National Academy of Sciences}, 107(19), 8695--8700.
 \item
+  Liu, Z.-Q., Bazinet, V., Hansen, J. Y., Milisav, F., Luppi, A. I.,
+  Ceballos, E. G., Farahani, A., Suárez, L. E., Shafiei, G., Markello,
+  R. D., \& Mišić, B. (2025). netneurotools: A trainee-oriented approach
+  to network neuroscience. \emph{bioRxiv}.
+  https://doi.org/10.1101/2025.09.09.675160
+\item
   Markello, R. D., Arnatkeviciute, A., Poline, J.-B., Fulcher, B. D.,
-  Fornito, A., \& Misic, B. (2021). Standardizing workflows in imaging
+  Fornito, A., \& Mišić, B. (2021). Standardizing workflows in imaging
   transcriptomics with the abagen toolbox. \emph{eLife}, 10, e72129.
 \item
-  Markello, R. D., \& Misic, B. (2021). Comparing spatial null models
+  Markello, R. D., \& Mišić, B. (2021). Comparing spatial null models
   for brain maps. \emph{NeuroImage}, 236, 118052.
 \item
   Schaefer, A., Kong, R., Gordon, E. M., Laumann, T. O., Zuo, X.-N.,
@@ -977,6 +1013,11 @@ The author declares no competing interests.
 \item
   The 1000 Genomes Project Consortium. (2015). A global reference for
   human genetic variation. \emph{Nature}, 526(7571), 68--74.
+\item
+  Van Essen, D. C., Ugurbil, K., Auerbach, E., Barch, D., Behrens, T. E.
+  J., Bucholz, R., Chang, A., Chen, L., Corbetta, M., Curtiss, S. W., et
+  al.~(2012). The Human Connectome Project: A data acquisition
+  perspective. \emph{NeuroImage}, 62(4), 2222--2231.
 \item
   Yan, X., Kong, R., Xue, A., et al.~(2023). Homotopic local-global
   parcellation of the human cerebral cortex from resting-state
