@@ -14,7 +14,7 @@ version: 1.0.0
 date-released: "2026-07-23"
 license: MIT
 repository-code: "https://github.com/Jacoposchenetti/Neurogenetics"
-doi: 10.5281/zenodo.21514561
+doi: 10.5281/zenodo.21514560
 authors:
   - family-names: Schenetti
     given-names: Jacopo

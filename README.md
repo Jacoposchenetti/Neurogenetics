@@ -1,6 +1,6 @@
 # Neurogenetics: imaging transcriptomics of EEG alpha-power genetics in the cortical alpha generators
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21514561.svg)](https://doi.org/10.5281/zenodo.21514561)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21514560.svg)](https://doi.org/10.5281/zenodo.21514560)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Code and derived results for the study:
@@ -214,7 +214,7 @@ If you use this code, please cite the archived release:
 
 > Schenetti, J. (2026). *Neurogenetics: analysis code and derived results for an
 > imaging-transcriptomics test of EEG alpha-power genetics* (v1.0.0) [Software].
-> Zenodo. https://doi.org/10.5281/zenodo.21514561
+> Zenodo. https://doi.org/10.5281/zenodo.21514560
 
 together with the manuscript and the underlying resources:
 ENIGMA-EEG (Smit et al., 2018), the Allen Human Brain Atlas (Hawrylycz et al., 2012),
